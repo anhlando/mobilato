@@ -3,7 +3,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @CucumberOptions(
-        features = "src/test/features",
+        features = "src/test/resources/features",
         glue = {"steps","."},
         tags = {"@test"},
         plugin = {"steps.SetupSteps"},
