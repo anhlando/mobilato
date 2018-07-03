@@ -1,13 +1,11 @@
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import models.AppiumServer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
-import org.omg.CORBA.Environment;
-import steps.SetupEnvi;
-import utilities.Settings;
+import models.Environment;
+import utilities.Helper;
 
 @CucumberOptions(
         features = "src/test/resources/features",
@@ -22,15 +20,18 @@ import utilities.Settings;
 
 @RunWith(Cucumber.class)
 public class RunnerTest {
+    private static Environment environment;
 
     @BeforeClass
     public static void beforeAll() {
-//        System.out.print(Settings.getEnviProperty("deviceID"));
-        SetupEnvi.initialize();
+        Helper.log("Start test...");
+        environment = new Environment();
+        environment.initialize();
     }
 
     @AfterClass
     public static void afterAll() {
-        SetupEnvi.tearDown();
+        Helper.log("End test!!!");
+        Environment.cleanup();
     }
 }

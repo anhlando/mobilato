@@ -93,7 +93,7 @@ public class Helper {
         return ste[2 + depth].getMethodName();
     }
 
-    public static void print(String x) {
+    public static void log(String x) {
         System.out.println("(" + getCurrentDate("d/M H:m:s:SSS") + ")<" + getMethodName(1) + "> " + x);
     }
 
