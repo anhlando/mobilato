@@ -3,6 +3,7 @@ Feature:
   I want to input all my info
   So that I can proceed to apply for a loan
 
+  @test
   Scenario Outline: input invalid phone & ID
     Given I am at the 'Personal Details' screen
     When I enter phone number <invalid_phone>

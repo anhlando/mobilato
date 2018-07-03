@@ -3,6 +3,7 @@ Feature:
   I want to  read the introduction about cash loan walking online function
   So that I will have a better understanding about the product
 
+  @SmokeTest @RegressionTest
   Scenario: go through all 4 introduction pages
     Given I am at the Welcome screen
     When I select 'Cashloan' option

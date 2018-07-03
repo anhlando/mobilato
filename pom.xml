@@ -52,19 +52,59 @@
             <url>https://nexus.cz.infra/nexus/content/groups/mirror/</url>
         </repository>
     </repositories>
+
     <profiles>
-        <!-- mobile envi -->
+
         <profile>
             <id>htc_one_m8</id>
-            <properties>
-                <envi.target>htc_one_m8</envi.target>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <delete file="${project.build.outputDirectory}/environment.properties"/>
+                                        <copy file="src/main/resources/environment.htc_one_m8.properties"
+                                              tofile="${project.build.outputDirectory}/environment.properties"/>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
+
         <profile>
-            <id>samsung_j7</id>
-            <properties>
-                <envi.target>samsung_j7</envi.target>
-            </properties>
+            <id>samsung_galaxy_win</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <delete file="${project.build.outputDirectory}/environment.properties"/>
+                                        <copy file="src/main/resources/environment.samsung_galaxy_win.properties"
+                                              tofile="${project.build.outputDirectory}/environment.properties"/>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
     </profiles>
@@ -78,8 +118,8 @@
                 <version>3.1</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <compilerArgument>-Werror</compilerArgument>
                 </configuration>
             </plugin>
