@@ -32,6 +32,6 @@ public class RunnerTest {
     @AfterClass
     public static void afterAll() {
         Helper.log("End test!!!");
-        Environment.cleanup();
+        environment.cleanup();
     }
 }

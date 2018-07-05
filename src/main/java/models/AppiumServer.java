@@ -20,7 +20,7 @@ public class AppiumServer {
     private int portMax;
     private String ip;
 
-    public AppiumServer(String ip, int portMin, int portMax){
+    public AppiumServer(String ip, int portMin, int portMax) {
         this.ip = ip;
         this.portMin = portMin;
         this.portMax = portMax;
@@ -32,7 +32,7 @@ public class AppiumServer {
             //Set Capabilities
             cap = new DesiredCapabilities();
             cap.setCapability("noReset", "false");
-            cap.setCapability("--session-override",true);
+            cap.setCapability("--session-override", true);
 
             //Build the Appium service
             builder = new AppiumServiceBuilder();
@@ -44,15 +44,13 @@ public class AppiumServer {
             builder.usingPort(port);
 
             builder.withCapabilities(cap);
-            //builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE, "true");
             builder.withArgument(GeneralServerFlag.LOG_LEVEL, "error");
 
             //Start the server with the builder
             service = AppiumDriverLocalService.buildService(builder);
             service.start();
-            Helper.log("Appium server started successfully!!! URL: " + getURL());
-        }
-        catch (Exception e){
+            Helper.log("Appium server started successfully at: " + getURL());
+        } catch (Exception e) {
             Helper.log("Error: " + e.getMessage());
             Helper.log("Stack trace: " + e.getStackTrace());
         }
@@ -60,13 +58,13 @@ public class AppiumServer {
 
     public void stopServer() {
         service.stop();
+        Helper.log("Appium server stopped successfully!!!");
     }
 
-    public URL getURL(){
-        if (service.isRunning()){
+    public URL getURL() {
+        if (service.isRunning()) {
             return service.getUrl();
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -76,13 +74,13 @@ public class AppiumServer {
         boolean isPortAvailable = false;
         int port = 0;
         while (!isPortAvailable) {
-            port = Helper.genRandomNumber(portMin,portMax);
+            port = Helper.genRandomNumber(portMin, portMax);
             isPortAvailable = !checkIfServerIsRunnning(port);
         }
         return port;
     }
 
-     private boolean checkIfServerIsRunnning(int port) {
+    private boolean checkIfServerIsRunnning(int port) {
         boolean isServerRunning = false;
         ServerSocket serverSocket;
         try {

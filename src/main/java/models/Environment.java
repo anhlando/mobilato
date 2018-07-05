@@ -1,14 +1,10 @@
 package models;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import utilities.Helper;
-import utilities.Settings;
 
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Properties;
 
 public class Environment {
@@ -36,10 +32,11 @@ public class Environment {
         //Generate new driver
         DriverFactory driverFactory = new DriverFactory(server.getURL(),caps);
         driver = driverFactory.getDriver(properties.getProperty("platform"));
-
     }
 
     public static void cleanup() {
+        driver.quit();
+        Helper.log("Appium driver is stopped successfully!!!");
         server.stopServer();
     }
 
